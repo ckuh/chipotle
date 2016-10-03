@@ -3,6 +3,7 @@ const RRM = require('./helpers/RRM.js')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const bodyParse = require('body-parser')
+require('./db')
 
 const app = express()
 app.set('port', process.env.PORT || 1337)
