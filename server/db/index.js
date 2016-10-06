@@ -5,7 +5,7 @@ mongoose.Promise = require('q').Promise
 
 require('dotenv').config()
 
-const dbURL = 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@ds033046.mlab.com:33046/chris_portfolio'
+const dbURL = 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@ds049456.mlab.com:49456/chipotle'
 
 const db = mongoose.connection
 
