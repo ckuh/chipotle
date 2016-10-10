@@ -12,8 +12,7 @@ const db = mongoose.connection
 mongoose.connect(dbURL)
 
 db.on('error', console.error.bind(console, 'connection error:'))
+
 db.once('open', function () {
   console.log('[' + moment().format('hh:mm:ss') + ']' + ' Database connection established')
 })
-
-module.exports = db
