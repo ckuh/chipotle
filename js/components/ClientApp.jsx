@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 const { Router, Route, browserHistory } = require('react-router')
 
+import store from '../store'
+import { Provider } from 'react-redux'
+
 // component
 import Home from './Home'
 
@@ -12,9 +15,11 @@ const myRoutes = () => (
 class App extends Component {
   render () {
     return (
-      <Router history={browserHistory}>
-        {myRoutes()}
-      </Router>
+      <Provider store={store}>
+        <Router history={browserHistory}>
+          {myRoutes()}
+        </Router>
+      </Provider>
     )
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 class Home extends Component {
   constructor (props) {
@@ -49,10 +50,21 @@ class Home extends Component {
     return (
       <div>
         <h1>Hello World</h1>
+        <pre>
+          <code>
+            {JSON.stringify(this.props, null, 4)}
+          </code>
+        </pre>
         {data}
       </div>
     )
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    ingredients: state.ingredients
+  }
+}
+
+export default connect(mapStateToProps)(Home)
