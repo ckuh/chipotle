@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
 import { connect } from 'react-redux'
+
+// actions
+import { getIngredients } from '../actions/ingredients.action'
 
 class Home extends Component {
   constructor (props) {
@@ -14,23 +17,11 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    this.getData()
-  }
-
-  getData () {
-    return axios.get(
-      '/api/ingredients'
-    )
-    .then((resp) => {
-      this.setState({data: resp.data})
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    this.props.getIngredients()
   }
 
   renderData () {
-    return this.state.data.map((item, key) => {
+    return this.props.ingredients.ingredientsList.map((item, key) => {
       return (
         <div key={key}>
           <h1>{item.name}</h1>
@@ -43,22 +34,24 @@ class Home extends Component {
   render () {
     let data
 
-    if (this.state.data) {
+    if (this.props.ingredients.ingredientsList.length) {
       data = this.renderData()
     }
 
     return (
       <div>
         <h1>Hello World</h1>
-        <pre>
-          <code>
-            {JSON.stringify(this.props, null, 4)}
-          </code>
-        </pre>
         {data}
       </div>
     )
   }
+}
+
+const { object, func } = React.PropTypes
+
+Home.propTypes = {
+  getIngredients: func,
+  ingredients: object
 }
 
 const mapStateToProps = (state) => {
@@ -67,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, { getIngredients })(Home)

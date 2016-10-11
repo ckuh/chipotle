@@ -1,29 +1,19 @@
 export default function reducer (state = {
-  projList: [],
+  ingredientsList: [],
   fetching: false,
   fetched: false,
   error: ''
 }, action) {
   switch (action.type) {
     case 'FETCH_INGREDIENTS': {
-      const newState = {}
-      Object.assign(newState, state, {fetching: true})
-      return newState
+      console.log('fetching')
+      return {...state, fetching: true}
     }
     case 'FETCH_INGREDIENTS_REJECTED': {
-      const newState = {}
-      Object.assign(newState, state, {fetching: false, error: action.payload})
-      return newState
+      return {...state, fetching: false, error: action.paylaod}
     }
     case 'FETCH_INGREDIENTS_FULFILLED': {
-      const newState = {}
-      Object.assign(newState, state, {fetching: false, fetched: true, projList: action.payload.data, filterProjList: action.payload.data})
-      return newState
-    }
-    case 'SET_INGREDIENTS': {
-      const newState = {}
-      Object.assign(newState, state, {filterProjList: action.payload})
-      return newState
+      return {...state, fetching: false, fetched: true, ingredientsList: action.payload}
     }
     default: {
       return state
