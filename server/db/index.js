@@ -5,7 +5,7 @@ mongoose.Promise = require('q').Promise
 
 require('dotenv').config()
 
-const dbURL = 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@ds049456.mlab.com:49456/chipotle'
+const dbURL = process.env.PORT ? 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@ds049456.mlab.com:49456/chipotle' : 'mongodb://localhost/chipotle'
 
 const db = mongoose.connection
 
